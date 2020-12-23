@@ -3,7 +3,7 @@
 header OAuth 2.0
 footer Page %page% of %lastpage%
 
-title Client Credentials grant
+title Token Exchange
 autonumber
 
 participant T as "Tester"
