@@ -12,7 +12,7 @@ participant Auth as "Authorization Server"
 participant A as "System A"
 participant B as "System B"
 
-T -> Auth : **Token request**\n<font color=orange>[POST]</font>/as/oauth2/token\n? grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Atoken-exchange\n&subject_token=<font color=red>$OP_AT</font>&subject_token_type=urn%3Aietf%3Aparams%3Aoauth%3Atoken-type%3Aaccess_token
+T -> Auth : **Token request**\n<font color=orange>[POST]</font>/as/oauth2/token\n?grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Atoken-exchange\n&subject_token=<font color=red>$OP_AT</font>\n&subject_token_type=urn%3Aietf%3Aparams%3Aoauth%3Atoken-type%3Aaccess_token
 Auth -> A : <font color=green>200 OK</font> \n Body: \n{\n\t"access_token":"<font color=red>$AT</font>",\n\t"scope":"system_b.resource.verb",\n\t"token_type":"Bearer",\n\t"expires_in":<font color=red>$AT_LIFETIME</font>\n}
 
 T -> B : **API Call** \n<font color=orange>[VERB]</font> /b/api/resource\n Header: Authorization: Bearer <font color=red>$AT</font>
