@@ -8,13 +8,13 @@ autonumber
 
 participant T as "Tester"
 participant Auth as "Authorization Server"
-participant A as "System A"
-participant B as "System B"
+participant 1 as "System 1"
+participant 2 as "System 2"
 
-T -> Auth : **Token Exchange request**\n<font color=orange>[POST]</font>https://as.example.com/oauth2/token\n?resource=https%3A%2F%2Fsystem_b.example.com%2Fapi%2Fresource.verb\n&grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Atoken-exchange\n&subject_token=<font color=red>$OP_AT</font>\n&subject_token_type=urn%3Aietf%3Aparams%3Aoauth%3Atoken-type%3Aaccess_token
+T -> Auth : **Token Exchange request**\n<font color=orange>[POST]</font>https://as.example.com/oauth2/token\n?resource=https%3A%2F%2Fsystem2.example.com%2Fapi%2Fresource.verb\n&grant_type=urn%3Aietf%3Aparams%3Aoauth%3Agrant-type%3Atoken-exchange\n&subject_token=<font color=red>$OP_AT</font>\n&subject_token_type=urn%3Aietf%3Aparams%3Aoauth%3Atoken-type%3Aaccess_token
 Auth -> Auth : Generate <font color=red>$AT</font> from <font color=red>$OP_AT</font>
-Auth -> A : <font color=green>200 OK</font> \n Body: \n{\n\t"access_token":"<font color=red>$AT</font>",\n\t"scope":"https://system_b.example.com/api/resource.verb",\n\t"token_type":"Bearer",\n\t"expires_in":<font color=red>$AT_LIFETIME</font>\n}
+Auth -> A : <font color=green>200 OK</font> \n Body: \n{\n\t"access_token":"<font color=red>$AT</font>",\n\t"scope":"https://system2.example.com/api/resource.verb",\n\t"token_type":"Bearer",\n\t"expires_in":<font color=red>$AT_LIFETIME</font>\n}
 
-T -> B : **API Call** \n<font color=orange>[VERB]</font>https://system_b.example.com/api/resource\n Header: Authorization: Bearer <font color=red>$AT</font>
+T -> B : **API Call** \n<font color=orange>[VERB]</font>https://system2.example.com/api/resource\n Header: Authorization: Bearer <font color=red>$AT</font>
 B -> T : **API Response**
 @enduml
