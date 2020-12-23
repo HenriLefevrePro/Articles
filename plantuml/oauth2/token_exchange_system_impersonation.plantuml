@@ -7,7 +7,6 @@ title Token Exchange
 autonumber
 
 participant T as "Tester"
-participant OP as "OpenID Connect Authentication Server"
 participant Auth as "Authorization Server"
 participant A as "System A"
 participant B as "System B"
